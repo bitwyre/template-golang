@@ -1,0 +1,24 @@
+version: "3.1"
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: ./docker/local.Dockerfile
+    volumes:
+      - ./server:/app
+    depends_on:
+      - postgres
+    command: sh -c './run.sh hot-serve'
+    ports:
+      - "3000:3000"
+
+  postgres:
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_DB: user
+      POSTGRES_PASSWORD: user
+    ports:
+      - "5432:5432"

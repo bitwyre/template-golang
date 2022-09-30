@@ -1,0 +1,7 @@
+# Options for analysis running.
+run:
+  timeout: 5m
+  tests: false
+  skip-dirs:
+    - tmp
+  modules-download-mode: readonly
