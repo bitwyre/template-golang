@@ -1,21 +1,15 @@
-on: push
-
-env:
-  JENKINS_HOST: https://viper.bitwyre.id
-  JENKINS_JOB: order_service_go/main
-  JENKINS_PARAMS: no
-
+name: trigger jenkins job
+on: [push]
 jobs:
-  launch_jenkins_job:
-    name: trigger jenkins job
+
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Trigger Jenkins Job
-        uses: sbitio/trigger-jenkins-job@master
+      - name: trigger single Job
+        uses: appleboy/jenkins-action@master
         with:
-          JENKINS_USER: ${{ secrets.JENKINS_USER }}
-          JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
-          JENKINS_HOST: ${{ env.JENKINS_HOST }}
-          JENKINS_JOB: ${{ env.JENKINS_JOB }}
-          JENKINS_PARAMS: ${{ env.JENKINS_PARAMS }}
+          url: "https://viper.bitwyre.com"
+          user: "reynldi"
+          token: ${{ secrets.JENKINS_TOKEN }}
+          job: "foobar"
