@@ -9,7 +9,7 @@ jobs:
       - name: Build single job
         uses: Mondtic/build-jenkins-job@master
         with:
-          jenkins-url: "https://viper.bitwyre.id"
+          jenkins-url: https://viper.bitwyre.id
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-job: "order_service_go/main"
