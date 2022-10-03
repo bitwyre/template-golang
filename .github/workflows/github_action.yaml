@@ -13,6 +13,6 @@ jobs:
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-job: "order_service_go/main"
-          jenkins-job-params: "{'any_param': 'any_value'}"
+#          jenkins-job-params: "{'any_param': 'any_value'}"
           jenkins-wait-job: "no-wait"
           jenkins-ssl-verify: "true"
