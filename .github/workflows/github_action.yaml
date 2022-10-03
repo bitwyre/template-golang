@@ -6,12 +6,13 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger jenkins job
-        uses: jabbukka/jenkins-trigger@main
+      - name: Build single job
+        uses: Mondtic/build-jenkins-job@master
         with:
-          url: "https://viper.bitwyre.id/"
-          job_name: "order_service_go/main"
-          user_name: ${{ secrets.JENKINS_USER }}
-          api_token: ${{ secrets.JENKINS_TOKEN }}
-          wait: "true"
-          timeout: "1000"
+          jenkins-url: "https://viper.bitwyre.id"
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-job: "order_service_go/main"
+          jenkins-job-params: "{'any_param': 'any_value'}"
+          jenkins-wait-job: "no-wait"
+          jenkins-ssl-verify: "true"
