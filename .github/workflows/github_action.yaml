@@ -9,16 +9,12 @@ jobs:
     name: trigger-jenkins
     runs-on: ubuntu-latest
     steps:
-      - name: Extract branch name
-        shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-        id: extract_branch
       - name: Build single job
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-url: https://viper.bitwyre.id
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-user: ${{ secrets.JENKINS_USER }}
-          jenkins-job: "${{ env.SERVICE_NAME }}/${BRANCH_NAME}"
+          jenkins-job: "${{ env.SERVICE_NAME }}/$(echo ${GITHUB_REF#refs/heads/})"
           jenkins-wait-job: "wait"
           jenkins-ssl-verify: "true"
