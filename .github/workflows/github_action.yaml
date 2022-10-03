@@ -18,7 +18,7 @@ jobs:
       - name: Trigger jenkins job
         uses: joshlk/jenkins-githubaction@master
         with:
-          url: https://viper.bitwyre.id
+          url: https://viper.bitwyre.id/
           job_name: order_service_go
           username: ${{ secrets.JENKINS_USER }}
           api_token: ${{ secrets.JENKINS_TOKEN }}
