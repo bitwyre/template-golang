@@ -1,7 +1,7 @@
 on: push
 
 env:
-  JENKINS_HOST: https://viper.bitwyre.com/
+  JENKINS_HOST: https://viper.bitwyre.com
   JENKINS_JOB: order_service_go/main
   JENKINS_PARAMS: no
 
