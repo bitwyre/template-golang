@@ -9,7 +9,7 @@ jobs:
       - name: Trigger jenkins job
         uses: jabbukka/jenkins-trigger@main
         with:
-          url: "https://viper.bitwyre.id"
+          url: "https://viper.bitwyre.id/"
           job_name: "order_service_go/main"
           user_name: ${{ secrets.JENKINS_USER }}
           api_token: ${{ secrets.JENKINS_TOKEN }}
