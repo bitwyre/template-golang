@@ -11,13 +11,14 @@ import (
 )
 
 type applicationEnv struct {
-	ServerPort  int    `mapstructure:"SERVER_PORT"`
-	FrontEndURL string `mapstructure:"FRONTEND_URL"`
-	BaseURL     string `mapstructure:"BASE_URL"`
-	AppSecret   string `mapstructure:"APP_SECRET"`
-	BasicApiKey string `mapstructure:"BASIC_API_KEY"`
-	Env         string `mapstructure:"ENV"`
-	Migration   string
+	ServerPort       int    `mapstructure:"SERVER_PORT"`
+	FrontEndURL      string `mapstructure:"FRONTEND_URL"`
+	BaseURL          string `mapstructure:"BASE_URL"`
+	AppSecret        string `mapstructure:"APP_SECRET"`
+	BasicApiKey      string `mapstructure:"BASIC_API_KEY"`
+	Env              string `mapstructure:"ENV"`
+	Migration        string
+	SelectedDbDriver string `mapstructure:"DB_DRIVER"`
 
 	// Postgres Database
 	PgHost     string `mapstructure:"PG_HOST"`
@@ -25,6 +26,13 @@ type applicationEnv struct {
 	PgUser     string `mapstructure:"PG_USER"`
 	PgPassword string `mapstructure:"PG_PASSWORD"`
 	PgDB       string `mapstructure:"PG_DB"`
+
+	// Mysql Database
+	SqlHost     string `mapstructure:"SQL_HOST"`
+	SqlPort     string `mapstructure:"SQL_PORT"`
+	SqlUser     string `mapstructure:"SQL_USER"`
+	SqlPassword string `mapstructure:"SQL_PASSWORD"`
+	SqlDB       string `mapstructure:"SQL_DB"`
 
 	// Mail Config
 	SmtpHost      string `mapstructure:"SMTP_HOST"`

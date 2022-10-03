@@ -15,7 +15,7 @@ func Exec() {
 	_ = godotenv.Load()
 	lib.InitAppConfig(false)
 
-	pgClient := postgres.NewClient()
+	pgClient := postgres.PGDriver()
 	pgClient.AutoMigrate()
 
 	UserDataSeeder(pgClient.Db).CreateMany(10)
