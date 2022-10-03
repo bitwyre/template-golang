@@ -2,7 +2,7 @@ package app
 
 import (
 	"github.com/bitwyre/template-golang/pkg/app/middleware"
-	"github.com/bitwyre/template-golang/pkg/datastore/postgres"
+	"github.com/bitwyre/template-golang/pkg/datastore/mysql"
 	"github.com/bitwyre/template-golang/pkg/handler/rest"
 	"github.com/bitwyre/template-golang/pkg/lib"
 	"github.com/bitwyre/template-golang/pkg/repository"
@@ -16,18 +16,18 @@ type ClientApp struct {
 }
 
 func BootstrapApp(r *gin.Engine) ClientApp {
-	pg := postgres.NewClient()
-	pg.AutoMigrate()
+	sql := mysql.MySQLDriver()
+	sql.MySQLMigration()
 
 	r.Use(middleware.SetUpCors(lib.AppConfig.App.FrontEndURL))
 
-	repo := repository.NewRepository(pg.Db)
+	repo := repository.NewRepository(sql.Db)
 	rootService := service.NewService(repo)
 	rootRestHandler := rest.NewRest(rootService)
 
 	NewRoutes(r, rootRestHandler)
 
 	return ClientApp{
-		Db: pg.Db,
+		Db: sql.Db,
 	}
 }

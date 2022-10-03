@@ -12,11 +12,11 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-type ClientInstance struct {
+type ClientInstancePG struct {
 	Db *gorm.DB
 }
 
-func NewClient() *ClientInstance {
+func PGDriver() *ClientInstancePG {
 	var env = lib.AppConfig.App
 	dsn := fmt.Sprintf(`host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Jakarta`, env.PgHost, env.PgUser, env.PgPassword, env.PgDB, env.PgPort)
 
@@ -25,16 +25,16 @@ func NewClient() *ClientInstance {
 	})
 
 	if err != nil {
-		log.Fatalln("🔴  Database Error:" + err.Error())
+		log.Fatalln("🔴  Postgres Error:" + err.Error())
 		return nil
 	}
 
 	log.Println("🚀 Postgres database connected")
 
-	return &ClientInstance{Db: db}
+	return &ClientInstancePG{Db: db}
 }
 
-func (client *ClientInstance) AutoMigrate() {
+func (client *ClientInstancePG) AutoMigrate() {
 	err := client.Db.AutoMigrate(
 		&entity.User{},
 	)
