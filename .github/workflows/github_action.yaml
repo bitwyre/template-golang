@@ -10,6 +10,6 @@ jobs:
         uses: appleboy/jenkins-action@master
         with:
           url: "https://viper.bitwyre.id"
-          user: "reynldi"
+          user: "reynldis"
           token: ${{ secrets.JENKINS_TOKEN }}
           job: "foobar"
