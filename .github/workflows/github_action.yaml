@@ -6,10 +6,12 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: trigger single Job
-        uses: appleboy/jenkins-action@master
+      - name: Trigger jenkins job
+        uses: jabbukka/jenkins-trigger@main
         with:
           url: "https://viper.bitwyre.id"
-          user: ${{ secrets.JENKINS_USER }}
-          token: ${{ secrets.JENKINS_TOKEN }}
-          job: "order_service_go/main"
+          job_name: "order_service_go/main"
+          user_name: ${{ secrets.JENKINS_USER }}
+          api_token: ${{ secrets.JENKINS_TOKEN }}
+          wait: "true"
+          timeout: "1000"
