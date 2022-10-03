@@ -15,6 +15,6 @@ jobs:
           jenkins-url: https://viper.bitwyre.id
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-user: ${{ secrets.JENKINS_USER }}
-          jenkins-job: ${{ env.SERVICE_NAME }}/${GITHUB_REF##*/}
+          jenkins-job: "${{ env.SERVICE_NAME }}/${{ github.ref }}"
           jenkins-wait-job: "wait"
           jenkins-ssl-verify: "true"
