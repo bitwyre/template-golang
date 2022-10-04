@@ -40,6 +40,6 @@ func (client *ClientInstanceMySQL) MySQLMigration() {
 		&entity.User{},
 	)
 	if err != nil {
-		log.Fatalln("🔴 Database Migration Failed", err)
+		log.Fatalln("🔴 Database migration failed", err)
 	}
 }
