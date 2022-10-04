@@ -9,7 +9,10 @@ jobs:
     name: trigger-jenkins
     runs-on: ubuntu-latest
     steps:
-      - name: Get changed files in the docs folder
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get change-set
         id: changed-files-specific
         uses: tj-actions/changed-files@v31
         with:
