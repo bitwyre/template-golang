@@ -9,7 +9,14 @@ jobs:
     name: trigger-jenkins
     runs-on: ubuntu-latest
     steps:
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v31
+        with:
+          files: |
+            pkg/**
       - name: Build single job
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
         uses: Mondtic/build-jenkins-job@master
         with:
           jenkins-url: https://viper.bitwyre.id
