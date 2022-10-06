@@ -22,7 +22,7 @@ jobs:
         if: steps.changed-files-specific.outputs.any_changed == 'true'
         uses: Mondtic/build-jenkins-job@master
         with:
-          jenkins-url: https://viper.bitwyre.id
+          jenkins-url: ${{ secrets.JENKINS_URL }}
           jenkins-token: ${{ secrets.JENKINS_TOKEN }}
           jenkins-user: ${{ secrets.JENKINS_USER }}
           jenkins-job: ${{ env.JENKINS_JOB_NAME }}/${{ github.ref_name }}
