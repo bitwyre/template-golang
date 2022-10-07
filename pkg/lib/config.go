@@ -12,6 +12,8 @@ import (
 
 type applicationEnv struct {
 	ServerPort       int    `mapstructure:"SERVER_PORT"`
+	GrpcServerPort   string `mapstructure:"GRPC_PORT"`
+	ServiceName      string `mapstructure:"SERVICE_NAME"`
 	FrontEndURL      string `mapstructure:"FRONTEND_URL"`
 	BaseURL          string `mapstructure:"BASE_URL"`
 	AppSecret        string `mapstructure:"APP_SECRET"`
@@ -33,6 +35,8 @@ type applicationEnv struct {
 	SqlUser     string `mapstructure:"SQL_USER"`
 	SqlPassword string `mapstructure:"SQL_PASSWORD"`
 	SqlDB       string `mapstructure:"SQL_DB"`
+
+	OtelURL string `mapstructure:"OTEL_ENDPOINT"`
 
 	// Mail Config
 	SmtpHost      string `mapstructure:"SMTP_HOST"`

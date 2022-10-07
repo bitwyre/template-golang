@@ -1,14 +1,27 @@
 package app
 
 import (
+	"github.com/bitwyre/template-golang/pkg/app/middleware"
 	"github.com/bitwyre/template-golang/pkg/handler/rest"
 	"github.com/gin-gonic/gin"
 )
 
 func NewRoutes(r *gin.Engine, rest *rest.Rest) {
-	// Rest API Routes
-	r.GET("/health", rest.HealthCheck)
-	r.GET("/user/:userid", rest.GetUserRestHandler)
+	public(r, rest)
+	private(r, rest)
 
-	// You can include middleware.BasicAPIKeyMiddleware() to use API Key Middleware
+}
+
+func public(r *gin.Engine, rest *rest.Rest) {
+	public := r.Group("/public")
+	public.GET("/health", rest.HealthCheck)
+}
+
+func private(r *gin.Engine, rest *rest.Rest) {
+	private := r.Group("/private")
+
+	private.Use(middleware.BasicAPIKeyMiddleware())
+	private.Use(middleware.JWTMiddleware())
+
+	private.GET("/user/:userid", rest.GetUserRestHandler)
 }

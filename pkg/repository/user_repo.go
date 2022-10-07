@@ -1,14 +1,15 @@
 package repository
 
 import (
+	"context"
 	"log"
 
-	"github.com/bitwyre/template-golang/pkg/datastore/postgres/entity"
+	"github.com/bitwyre/template-golang/pkg/datastore/mysql/entity"
 	"gorm.io/gorm"
 )
 
 type IUserRepo interface {
-	FindById(id int) (entity.User, error)
+	FindById(id int, c context.Context) (entity.User, error)
 }
 
 type userRepo struct {
@@ -19,10 +20,10 @@ func newUserRepository(db *gorm.DB) *userRepo {
 	return &userRepo{db}
 }
 
-func (r *userRepo) FindById(id int) (entity.User, error) {
+func (r *userRepo) FindById(id int, c context.Context) (entity.User, error) {
 	var user entity.User
 
-	err := r.db.Where("id = ?", id).First(&user).Error
+	err := r.db.WithContext(c).Where("id = ?", id).First(&user).Error
 	if err != nil {
 		return user, err
 	}

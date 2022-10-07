@@ -1,0 +1,17 @@
+syntax = "proto3";
+package get_user;
+
+
+message UserPayload {
+  string id = 1;
+}
+
+message UserDataResp {
+  string email = 1;
+  string status = 2;
+  string user_code = 3;
+}
+
+service GetUserService {
+  rpc GetUser(UserPayload) returns (UserDataResp){}
+}

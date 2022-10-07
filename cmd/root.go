@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/bitwyre/template-golang/pkg/datastore/postgres/seeder"
+	"github.com/bitwyre/template-golang/pkg/datastore/mysql/seeder"
 	"github.com/spf13/cobra"
 )
 

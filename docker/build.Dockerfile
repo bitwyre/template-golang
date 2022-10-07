@@ -1,17 +1,19 @@
 FROM golang:1.17-alpine AS build
 
-RUN mkdir -p /app/teras
-WORKDIR /app/teras
+WORKDIR /app/bitwyre
 COPY . .
 
-RUN CGO_ENABLED=0 go build -o /app/teras/app /app/teras/main.go
+RUN CGO_ENABLED=0 go build -o /app/bitwyre/app /app/bitwyre/main.go
 
 ###
 FROM gcr.io/distroless/base-debian11
 
-COPY --from=build /app/teras/app .
+ENV GIN_MODE=release
+COPY --from=build /app/bitwyre/app .
 
 # Copy env template
-COPY --from=build /app/teras/docker/.template.env.dev ./.env
+COPY --from=build /app/bitwyre/docker/.template.env.dev ./.env
+
+EXPOSE 3000
 
 CMD ["/app", "serve",  "--env", "dev"]

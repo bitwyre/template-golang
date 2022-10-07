@@ -6,6 +6,8 @@ if [ "$ARGS" = "hot-serve" ]; then
 	air
 elif [ "$ARGS" == "serve" ]; then
     go run main.go serve - $@
+elif [ "$ARGS" == "seeder" ]; then
+    go run main.go - $@
 elif [ "$ARGS" == "build" ]; then
     go build -o build/main main.go
 elif [ "$ARGS" = "setup" ]; then

@@ -5,9 +5,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/bitwyre/template-golang/pkg/datastore/postgres/entity"
-	"github.com/bitwyre/template-golang/pkg/datastore/postgres/seeder"
-	"github.com/bitwyre/template-golang/pkg/test/config"
+	"github.com/bitwyre/template-golang/pkg/datastore/mysql/entity"
+	"github.com/bitwyre/template-golang/pkg/datastore/mysql/seeder"
+	test_config "github.com/bitwyre/template-golang/pkg/test/config"
 	"github.com/stretchr/testify/suite"
 	"github.com/tidwall/gjson"
 

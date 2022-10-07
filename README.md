@@ -1,4 +1,4 @@
-# Golang Project Template
+# Order Service Go
 
 This repository is a sample backend project template build with Go. We use this boilerplate for our internal development purposes. Feel free to open issue / PR on this repository
 
