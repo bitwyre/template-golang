@@ -1,0 +1,30 @@
+name: trigger jenkins job
+on: [push]
+
+env:
+  JENKINS_JOB_NAME: "order-service-go"
+
+jobs:
+  build:
+    name: trigger-jenkins
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Get change-set
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v31
+        with:
+          files: |
+            pkg/**
+      - name: Push jenkins event
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        uses: Mondtic/build-jenkins-job@master
+        with:
+          jenkins-url: ${{ secrets.JENKINS_URL }}
+          jenkins-token: ${{ secrets.JENKINS_TOKEN }}
+          jenkins-user: ${{ secrets.JENKINS_USER }}
+          jenkins-job: ${{ env.JENKINS_JOB_NAME }}/${{ github.ref_name }}
+          jenkins-wait-job: "wait"
+          jenkins-ssl-verify: "true"
